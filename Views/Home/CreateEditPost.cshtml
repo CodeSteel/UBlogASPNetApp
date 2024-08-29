@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Create/Edit Post";
+}
+
+@model UBlog.Models.Post
+
+<h1>Create/Edit Post</h1>
+
+<form asp-action="SavePost" asp-controller="Home" enctype="multipart/form-data" method="post" class="m-auto h-100">
+    <div class="card p-4 h-100 m-auto" style="width: 30rem;"> 
+        <input asp-for="Id" style="height: 0; padding: 0; margin: 0;" class="invisible" type="text" >
+
+        <input class="form-control bg-body text-white mt-1 mb-3" type="text" asp-for="Title" placeholder="Title" >
+        
+        <textarea class="form-control bg-body text-white mt-1" type="text" asp-for="Body" rows="4" placeholder="Content"> </textarea>
+
+        <button class="btn btn-outline-success mt-4" type="submit">SAVE</button>
+    </div>
+</form>

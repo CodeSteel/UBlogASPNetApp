@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UBlog</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UBlog.styles.css" asp-append-version="true" />
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            user-select: none;
+        }
+
+        .bi {
+            vertical-align: -0.125em;
+            fill: currentColor;
+        }
+
+
+        .sidebar {
+            background-color: #212529;
+            padding: 15px;
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .sidebar .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .badge.text-bg {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .main-content {
+            margin-left: 280px; /* Adjusted for sidebar width */
+            padding: 20px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .title-container {
+            padding: 10px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .title-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .title-text {
+            color: #3ba45c;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <main class="d-flex flex-nowrap">
+        <div class="sidebar text-white">
+            <a href="/" class="d-flex align-items-center mb-4 mt-4 text-white text-decoration-none title-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+                </svg>
+                <span class="title-text mx-3">UBlog</span>
+            </a>
+
+            <hr>
+
+            <a class="nav-link mb-2" asp-area="" asp-controller="Home" asp-action="CreateEditPost">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" color="#3ba45c" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                </svg>
+                <i class="mx-2">Create New Post</i>
+            </a>
+
+            <hr>
+
+            <ul class="nav nav-pills flex-column mb-4">
+                <li>
+                    <a class="nav-link mb-2" asp-area="" asp-controller="Home" asp-action="ToggleSortOrderByCreatedAt">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" color="#3ba45c" fill="currentColor" class="bi bi-calendar-fill" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                        <i class="mx-2">Sort By Newest</i>
+                    </a>
+                    <a class="nav-link mb-2" asp-area="" asp-controller="Home" asp-action="ToggleSortOrderByLastEditedAt">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" color="#3ba45c" fill="currentColor" class="bi bi-hourglass-bottom" viewBox="0 0 16 16">
+                            <path d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5m2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702s.18.149.5.149.5-.15.5-.15v-.7c0-.701.478-1.236 1.011-1.492A3.5 3.5 0 0 0 11.5 3V2z" />
+                        </svg>
+                        <i class="mx-2">Sort By Last Edited</i>
+                    </a>
+                </li>
+            </ul>
+            <hr>
+        </div>
+
+        <div class="main-content">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </main>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
